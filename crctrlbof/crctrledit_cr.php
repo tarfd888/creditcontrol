@@ -657,11 +657,13 @@ if ($rec_result) {
 						</div>
 					</div> 
 					<?php if (substr($crstm_step_code,0,1) != 6) { ?>
-						<div class="content-header-right col-md-6 col-12">
+						<div class="content-header-right col-md-6 col-12 mb-2">
 							<div class="btn-group float-md-right">
 								<button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-settings mr-1"></i>Action</button>
-									<div class="dropdown-menu arrow"><a class="dropdown-item blue" href="#div_frm_reject" data-toggle="modal"><i class="fa fa-times-circle mr-1"></i>ยกเลิกใบขออนุมัติวงเงินสินเชื่อ</a>
-									<div class="dropdown-divider"></div><a class="dropdown-item blue" href="#div_frm_recall" data-toggle="modal"><i class="fa fa-undo mr-1"></i> Recall Email</a>
+									<div class="dropdown-menu arrow">
+										<a class="dropdown-item blue" href="#div_frm_recall" data-toggle="modal"><i class="fa fa-undo mr-1"></i> Recall Email</a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item danger" href="#div_frm_reject" data-toggle="modal"><i class="fa fa-times-circle mr-1"></i>ยกเลิกใบขออนุมัติวงเงินสินเชื่อ</a>
 								</div>
 							</div>
 						</div>

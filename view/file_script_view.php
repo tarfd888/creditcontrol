@@ -16,7 +16,9 @@
 <script src="<?php echo BASE_DIR;?>/theme/app-assets/vendors/js/ui/headroom.min.js"></script>
 <script src="<?php echo BASE_DIR;?>/theme/app-assets/js/core/main.js"></script> <!-- to-Top -->
 <script src="<?php echo BASE_DIR;?>/theme/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
-<script src="<?php echo BASE_DIR;?>/_libs/js/script-mul.js?v<?php echo rand(); ?>"></script>     <!-- script master -->
+<!-- <script src="<?php echo BASE_DIR;?>/_libs/js/script-mul.js?v<?php echo rand(); ?>"></script>  -->    <!-- script master -->
+<script src="<?php echo BASE_DIR;?>/_libs/js/script-view.js?v<?php echo rand(); ?>"></script>     <!-- script master -->
+
 <script src="<?php echo BASE_DIR;?>/theme/app-assets/vendors/js/forms/extended/maxlength/bootstrap-maxlength.js"></script>
 <script src="<?php echo BASE_DIR;?>/theme/app-assets/js/scripts/forms/extended/form-maxlength.min.js"></script>
 <script src="<?php echo BASE_DIR;?>/theme/app-assets/js/scripts/navs/navs.min.js"></script>

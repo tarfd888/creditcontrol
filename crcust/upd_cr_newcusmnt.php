@@ -144,6 +144,9 @@ $sql_stamp = "select * FROM apprv_person Where apprv_cus_nbr = ?  order by apprv
                         <?php } ?>    
                         <div class="dropdown-divider"></div><a class="dropdown-item blue" href="../crcust/cr_form_newcus.php?crnumber=<?php echo encrypt($cus_app_nbr, $key);?>" target="_blank"><i class="ft-printer mr-1"></i>พิมพ์ใบขออนุมัติ<?php echo($cardtxt);?></a> 
                         <div class="dropdown-divider"></div><a class="dropdown-item blue" href="../dashboard/timeline-left.php?q=<?php echo encrypt($cus_app_nbr, $key);?>"><i class="ft ft-map-pin mr-1"></i>Document Tracking</a> 
+                        <?php if (!inlist("60",$cus_step_code)) {?>
+                            <div class="dropdown-divider"></div><a class="dropdown-item danger" href="#div_frm_reject" data-toggle="modal"><i class="fa fa-times-circle mr-1"></i>ยกเลิกเอกสาร<?php echo($cardtxt);?></a> 
+                        <?php } ?>    
                     </div>
                 </div>
             </div>

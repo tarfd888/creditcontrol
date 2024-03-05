@@ -13,7 +13,6 @@
                         style="width:100%; font-size:0.89em;">
                         <thead>
                             <tr>
-                                <!-- <th>No.</th> -->
                                 <th>Domestic</th>
                                 <th>Export</th>
                                 <th>ลูกค้าทั่วไป</th>
@@ -27,7 +26,7 @@
             </div>
             
             <div class="col-md-6">
-                <div class="table-responsive mb-2">
+                <div class="table-responsive">
                     <table id="image_table" class="table table-striped table-sm table-hover table-bordered image_table_view"
                         style="width:100%; font-size:0.89em;">
                     </table>

@@ -38,7 +38,7 @@ set_time_limit(0);
         {
             $criteria = "";
         }	 
-        if (inlist("cr_edit,cr_edit_chg",$action)) {	     
+        if (inlist("cr_edit,cr_edit_chg,view_newcust",$action)) {	     
             $sql = "SELECT * FROM cr_book_mstr $criteria order by book_no";
         }
         else 

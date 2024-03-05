@@ -702,7 +702,7 @@ switch ($fin_img) {
 								<button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-settings mr-1"></i>Action</button>
 									<div class="dropdown-menu arrow">
 										<a class="dropdown-item blue" href="#div_frm_recall" data-toggle="modal"><i class="fa fa-undo mr-1"></i> Recall Email</a>
-										<a class="dropdown-item blue" href="#div_frm_reject" data-toggle="modal"><i class="fa fa-times-circle mr-1"></i>ยกเลิกใบขออนุมัติวงเงินสินเชื่อ</a>
+										<a class="dropdown-item danger" href="#div_frm_reject" data-toggle="modal"><i class="fa fa-times-circle mr-1"></i>ยกเลิกใบขออนุมัติวงเงินสินเชื่อ</a>
 									</div>
 							</div>
 						</div>

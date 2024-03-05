@@ -144,10 +144,14 @@ $sql_stamp = "select * FROM apprv_person Where apprv_cus_nbr = ?  order by apprv
             <div class="content-header-right col-md-6 col-12">
                 <div class="btn-group float-md-right">
                     <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-settings mr-1"></i>Action</button>
-                    <div class="dropdown-menu arrow"><a class="dropdown-item blue" href="../newcust/upd_chgcusmnt.php?q=<?php echo encrypt($cus_app_nbr, $key); ?>" target="_blank"><i class="fa fa-file-text-o mr-1"></i>ดูรายละเอียดเอกสาร</a>
-                        <div class="dropdown-divider"></div><a class="dropdown-item blue" href="#div_frm_remind" data-toggle="modal"><i class="fa fa-undo mr-1"></i> Remind Email</a> 
+                        <div class="dropdown-menu arrow"><a class="dropdown-item blue" href="../newcust/upd_chgcusmnt.php?q=<?php echo encrypt($cus_app_nbr, $key); ?>" target="_blank"><i class="fa fa-file-text-o mr-1"></i>ดูรายละเอียดเอกสาร</a>
+                        <?php if (!inlist("10,20",$cus_step_code)) {?>
+                            <div class="dropdown-divider"></div><a class="dropdown-item blue" href="#div_frm_remind" data-toggle="modal"><i class="fa fa-undo mr-1"></i> Remind Email</a> 
+                        <?php } ?>    
                         <div class="dropdown-divider"></div><a class="dropdown-item blue" href="../crcust/cr_form_newcus.php?crnumber=<?php echo encrypt($cus_app_nbr, $key);?>" target="_blank"><i class="ft-printer mr-1"></i>พิมพ์ใบขออนุมัติ<?php echo($cardtxt);?></a> 
-                        <div class="dropdown-divider"></div><a class="dropdown-item blue" href="#div_frm_reject" data-toggle="modal"><i class="fa fa-times-circle mr-1"></i>ยกเลิกเอกสาร<?php echo($cardtxt);?></a> 
+                        <?php if (!inlist("60",$cus_step_code)) {?>
+                            <div class="dropdown-divider"></div><a class="dropdown-item danger" href="#div_frm_reject" data-toggle="modal"><i class="fa fa-times-circle mr-1"></i>ยกเลิกเอกสาร<?php echo($cardtxt);?></a> 
+                        <?php } ?>    
                     </div>
                 </div>
             </div>

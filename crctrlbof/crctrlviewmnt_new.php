@@ -627,7 +627,7 @@ switch ($info_cr5) {
           <!-- <h3 class="content-header-title mb-0"><?php echo $crstm_nbr; ?></h3> -->
         </div>
         <?php if (substr($crstm_step_code,0,1) != 6 && inlist($user_role,'ADMIN')) { ?>
-        <div class="content-header-right col-md-6 col-12">
+        <div class="content-header-right col-md-6 col-12 mb-2">
           <div class="btn-group float-md-right">
             <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false"><i class="icon-settings mr-1"></i>Action</button>

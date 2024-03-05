@@ -389,10 +389,13 @@ $sql = "select * FROM apprv_person Where apprv_cus_nbr = ?  order by apprv_id as
             <div class="card-header">
                 <div class="heading-elements">
                     <ul class="list-inline mb-0">
-                        <?php if($cus_step_code=="112") { ?>
+                        <!-- <?php if($cus_step_code=="112") { ?>
                         <button id="btnshowtext"
                             class="btn btn-sm btn-outline-warning btn-min-width btn-glow mr-1 mb-1"><i
                                 class="fa fa-bell"></i> มีข้อความถึงคุณ</button>
+                        <?php } ?> -->
+                        <?php if (inlist("32,810,820,830",$cus_step_code)) {  ?>
+                            <button class="btn btn-sm btn-danger btn-min-width btn-glow mr-1 mb-1"><i class="fa fa-bell"></i> ยกเลิกเอกสาร</button>
                         <?php } ?>
                         <li><a title="Click to go back,hold to see history" data-action="reload"><i
                                     class="fa fa-reply-all" onclick="javascript:window.history.back();"></i></a></li>
@@ -405,7 +408,7 @@ $sql = "select * FROM apprv_person Where apprv_cus_nbr = ?  order by apprv_id as
                 <div class="card-body">
                     <form id="frm_cust_add" name="frm_cust_add" autocomplete=OFF method="POST"
                         enctype="multipart/form-data" class="icons-tab-steps wizard-notification">
-                        <input type="hidden" name="action" id="action" value="cr_edit">
+                        <input type="hidden" name="action" id="action" value="view_newcust">
                         <input type="hidden" name="csrf_securecode" value="<?php echo $csrf_securecode?>">
                         <input type="hidden" name="csrf_token" value="<?php echo md5($csrf_token)?>">
                         <input type="hidden" name="info_cust" value="<?php echo encrypt($info_cust, $key) ?>">

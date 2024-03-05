@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-striped table-sm table-hover table-bordered compact nowrap book_table_cr"
+                    <table class="table table-striped table-sm table-hover table-bordered compact nowrap book_table_cr_view"
                         style="width:100%; font-size:0.89em;">
                         <thead>
                             <tr>
