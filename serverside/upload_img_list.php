@@ -81,7 +81,7 @@ if($number_of_rows > 0)
       
       <tr>
       <td align="center">'.$count.'</td>
-      <td align="center"><a href="'.$Image.'" target="_blank"> <img src= "'.$Image_icon.'" class="img-thumbnail" width="100" height="100" /> </a></td>
+      <td align="center"><a href="'.$Image.'" target="_blank"> <img src= "'.$Image_icon.'" class="img-thumbnail" width="50" height="50" /> </a></td>
       <td>'.$image_name.'</td>
       <td>'.$image_description.'</td>
       <td align="center"><a data-toggle="modal" class="open-EditImgModal" data-target="#imageModal" href="javascript:void(0)" id="edit" data-id1="'.$image_id.'" data-image_app_nbr="'.$image_app_nbr.'" data-image_name="'.$image_name.'" data-image_desc="'.$image_description.'"><i class="fa fa-pencil-square-o " style="color:DodgerBlue"></i></a> | <a id="delete" id1="'.$image_id.'" data-image_name="'.$image_name.'"><i class="fa fa-trash-o fa-sm " style="color:Crimson"></i></a> </td>
@@ -95,7 +95,7 @@ if($number_of_rows > 0)
       
       <tr>
       <td align="center">'.$count.'</td>
-      <td align="center"><a href="'.$Image.'" target="_blank"> <img src= "'.$Image_icon.'" class="img-thumbnail" width="100" height="100" /> </a></td>
+      <td align="center"><a href="'.$Image.'" target="_blank"> <img src= "'.$Image_icon.'" class="img-thumbnail" width="50" height="50" /> </a></td>
       <td>'.$image_name.'</td>
       <td>'.$image_description.'</td>
       <td align="center"><a href="javascript:void(0)"><i class="fa fa-lock" style="color:DodgerBlue"></i></a> | <a href="javascript:void(0)"><i class="fa fa-lock" style="color:Crimson"></i></a> </td>

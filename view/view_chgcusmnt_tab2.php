@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="form-group col-12 mb-2">
                         <label id="projectinput8" class="file center-block">
-                            <input type="file" name="multiple_files_edit" id="multiple_files_edit" multiple />
+                            <input type="file" name="multiple_files_edit" id="multiple_files_edit" multiple disabled/>
                             <span class="file-custom"></span>
                             <span class="text-muted">Only jpg, png, gif, pdf, xls, doc file
                                 allowed</span>

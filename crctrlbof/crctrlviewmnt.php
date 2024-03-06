@@ -696,7 +696,7 @@ switch ($fin_img) {
 						</div></br>
 						<!-- <h3 class="content-header-title mb-0"><?php echo $crstm_nbr; ?></h3> -->
 					</div>
-					<?php if (substr($crstm_step_code,0,1) != 6 && inlist($user_role,'ADMIN')) { ?>
+					<?php if (substr($crstm_step_code,0,1) != 6 && $crstm_step_code != "42" && inlist($user_role,'ADMIN')) { ?>
 						<div class="content-header-right col-md-6 col-12">
 							<div class="btn-group float-md-right">
 								<button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-settings mr-1"></i>Action</button>
@@ -714,10 +714,13 @@ switch ($fin_img) {
 						<div class="row">
 							<div class="col-12">
 								<div class="card">
-									<div class="card-header mt-1 pt-0 pb-0" >
+									<div class="card-header mt-1 pt-0 pb-1" >
 										<a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
 										<div class="heading-elements">
-											<ul class="list-inline mb-0">                                           
+											<ul class="list-inline mb-0"> 
+												<?php if (inlist("42",$crstm_step_code)) {  ?>
+													<button class="btn btn-sm btn-danger btn-min-width btn-glow mr-1 mb-1"><i class="fa fa-bell"></i> เอกสารยกเลิก</button>
+												<?php } ?>                                          
 												<li><a title="Click to go back,hold to see history" data-action="reload"><i class="fa fa-reply-all" onclick="javascript:window.history.back();"></i></a></li>
 												<li><a title="Click to expand the screen" data-action="expand"><i class="ft-maximize"></i></a></li>
 											</ul>
@@ -820,9 +823,8 @@ switch ($fin_img) {
 		<div class="drag-target"></div>
 		
 		<!-- BEGIN: Footer-->
-		<footer class="footer footer-static footer-light navbar-border">
-			<p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span class="float-md-left d-block d-md-inline-block">Copyright &copy; 2020 <a class="text-bold-800 grey darken-2" href="https://1.envato.market/pixinvent_portfolio" target="_blank">PIXINVENT </a></span><span class="float-md-right d-none d-lg-block">Power by IT Business Solution Team <i class="feather icon-heart pink"></i></span></p>
-		</footer>
+		<? include("../crctrlmain/menu_footer.php"); ?>
+
 		<script src="<?php echo BASE_DIR;?>/theme/app-assets/vendors/js/vendors.min.js"></script>
 		<script src="<?php echo BASE_DIR;?>/theme/app-assets/vendors/js/pickers/dateTime/moment-with-locales.min.js"></script>
 		<script src="<?php echo BASE_DIR;?>/theme/app-assets/vendors/js/pickers/dateTime/bootstrap-datetimepicker.min.js"></script>

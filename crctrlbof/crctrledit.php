@@ -379,11 +379,13 @@ if (inlist('40,41',$crstm_step_code)) {
 						</div>
 					</div>               
 					<?php if (substr($crstm_step_code,0,1) != 6) { ?>
-						<div class="content-header-right col-md-6 col-12">
+						<div class="content-header-right col-md-6 col-12 mb-2">
 							<div class="btn-group float-md-right">
 								<button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-settings mr-1"></i>Action</button>
-								<div class="dropdown-menu arrow"><a class="dropdown-item blue" href="#div_frm_reject" data-toggle="modal"><i class="fa fa-times-circle mr-1"></i>ยกเลิกใบขออนุมัติวงเงินสินเชื่อ</a>
-									<div class="dropdown-divider"></div><a class="dropdown-item blue" href="crctrlall.php"><i class="fa fa-home mr-1"></i> Home</a>
+								   <div class="dropdown-menu arrow">
+										<a class="dropdown-item danger" href="#div_frm_reject" data-toggle="modal"><i class="fa fa-times-circle mr-1"></i>ยกเลิกใบขออนุมัติวงเงินสินเชื่อ</a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item blue" href="crctrlall.php"><i class="fa fa-home mr-1"></i> Home</a>
 								</div>
 							</div>
 						</div>
@@ -1986,9 +1988,7 @@ if (inlist('40,41',$crstm_step_code)) {
 			<input type="hidden" name="cr_cust_code" value="">
 		</form>
 		<!-- BEGIN: Footer-->
-		<footer class="footer footer-static footer-light navbar-border">
-			<p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span class="float-md-left d-block d-md-inline-block">Copyright &copy; 2020 <a class="text-bold-800 grey darken-2" href="https://1.envato.market/pixinvent_portfolio" target="_blank">PIXINVENT </a></span><span class="float-md-right d-none d-lg-block">Power by IT Business Solution Team <i class="feather icon-heart pink"></i></span></p>
-		</footer>
+		<? include("../crctrlmain/menu_footer.php"); ?>
 		<script src="<?php echo BASE_DIR;?>/theme/app-assets/vendors/js/vendors.min.js"></script>
 		<script src="<?php echo BASE_DIR;?>/theme/app-assets/vendors/js/pickers/dateTime/moment-with-locales.min.js"></script>
 		<script src="<?php echo BASE_DIR;?>/theme/app-assets/vendors/js/pickers/dateTime/bootstrap-datetimepicker.min.js"></script>

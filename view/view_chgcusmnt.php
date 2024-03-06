@@ -311,7 +311,7 @@ if($rowCounts > 0){
                 <div class="card-body">
                     <form id="frm_cust_add" name="frm_cust_add" autocomplete=OFF method="POST"
                         enctype="multipart/form-data" class="icons-tab-steps wizard-notification">
-                        <input type="hidden" name="action" id="action" value="cr_edit">
+                        <input type="hidden" name="action" id="action" value="view_newcust">
                         <input type="hidden" name="csrf_securecode" value="<?php echo $csrf_securecode?>">
                         <input type="hidden" name="csrf_token" value="<?php echo md5($csrf_token)?>">
                         <input type="hidden" name="temimagerandom" id="temimagerandom"

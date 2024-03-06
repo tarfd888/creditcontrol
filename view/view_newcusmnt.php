@@ -606,5 +606,5 @@ $sql = "select * FROM apprv_person Where apprv_cus_nbr = ?  order by apprv_id as
 
 <? include("file_script_view.php"); ?>
 <script type="text/javascript">
-< /body>  < /
-html >
+</body>  
+</html >
