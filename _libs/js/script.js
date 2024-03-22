@@ -1210,7 +1210,7 @@
       preConfirm: function() {
         return new Promise(function(resolve) {
           apprvposteach(step_code);
-          updatedata(step_code);
+          ///////////////////////updatedata(step_code);
         });
       },
       allowOutsideClick: false
@@ -1243,7 +1243,7 @@
         var json = $.parseJSON(result);
         if (json.r == '0') {
           Swal.fire({
-            type: "Warning!",
+            type: "warning",
             html: json.e,
             icon: "warning",
             customClass: {

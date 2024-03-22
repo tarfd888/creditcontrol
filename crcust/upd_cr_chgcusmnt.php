@@ -13,6 +13,7 @@ set_time_limit(0);
 $curdate = date('Ymd');
 $params = array();
 $default_current_tab = "10";
+$remind_status = false;
 $newbranch_input = "none"; $cus_cond_term_txt = "none";
 //$request_tab = $_GET['current_tab'];
 $request_tab = mssql_escape(decrypt($_REQUEST['current_tab'], $key));
@@ -112,6 +113,18 @@ $sql_stamp = "select * FROM apprv_person Where apprv_cus_nbr = ?  order by apprv
         }
     }
     $apprv_id_array_count = count($apprv_id_array);
+
+$params_apprv = array($q);
+$sql_apprv = "select top 1 * FROM apprv_person Where apprv_cus_nbr = ? and apprv_status = '' order by apprv_seq";
+$result_apprv = sqlsrv_query($conn,$sql_apprv,$params_apprv); 
+if($result_apprv) {
+    while($row_apprv = sqlsrv_fetch_array($result_apprv)) {
+        $apprv_email = $row_apprv['apprv_email'];
+        $apprv_position = $row_apprv['apprv_position'];
+        $remind_status = true;
+    }  
+    $remind_email = $apprv_email."<br>"." ( ".$apprv_position. ")";
+}      
 ?>
 <?php include("header.php"); ?>
 
@@ -145,7 +158,7 @@ $sql_stamp = "select * FROM apprv_person Where apprv_cus_nbr = ?  order by apprv
                 <div class="btn-group float-md-right">
                     <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-settings mr-1"></i>Action</button>
                         <div class="dropdown-menu arrow"><a class="dropdown-item blue" href="../newcust/upd_chgcusmnt.php?q=<?php echo encrypt($cus_app_nbr, $key); ?>" target="_blank"><i class="fa fa-file-text-o mr-1"></i>ดูรายละเอียดเอกสาร</a>
-                        <?php if (!inlist("10,20",$cus_step_code)) {?>
+                        <?php if (!inlist("10,20",$cus_step_code) && ($remind_status)) {?>
                             <div class="dropdown-divider"></div><a class="dropdown-item blue" href="#div_frm_remind" data-toggle="modal"><i class="fa fa-undo mr-1"></i> Remind Email</a> 
                         <?php } ?>    
                         <div class="dropdown-divider"></div><a class="dropdown-item blue" href="../crcust/cr_form_newcus.php?crnumber=<?php echo encrypt($cus_app_nbr, $key);?>" target="_blank"><i class="ft-printer mr-1"></i>พิมพ์ใบขออนุมัติ<?php echo($cardtxt);?></a> 
@@ -271,9 +284,12 @@ $sql_stamp = "select * FROM apprv_person Where apprv_cus_nbr = ?  order by apprv
                                         <? } ?> 
                                     <? } ?>    
 
-                                    <button type="button" id="btnsave_chg" name="btnsave_chg" 
-                                        class="btn btn-outline-success btn-min-width btn-glow mr-1 mb-1"><i
-                                            class="fa fa-check-square-o"></i> Save</button>
+                                    <?php if(($can_edit_cr) && (!inlist("40,62,63,64",$cus_step_code))) { ?>
+                                        <button type="button" id="btnsave_chg" name="btnsave_chg" 
+                                            class="btn btn-outline-success btn-min-width btn-glow mr-1 mb-1"><i
+                                                class="fa fa-check-square-o"></i> Save</button>
+                                    <? } ?>    
+
                                     <button type="button" id="btnclose" name="btnclose"
                                         class="btn btn-outline-warning btn-min-width btn-glow mr-1 mb-1" onclick="document.location.href='../newcust/newcust_list.php'"><i
                                             class="fa fa-times"></i> Close</button>

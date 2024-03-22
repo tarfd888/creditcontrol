@@ -203,11 +203,20 @@ $headtitle =" - รายงานสรุปรายการแต่งต�
                                                     <th>อนก.</th>
                                                     <th>สถานะการอนุมัติ.</th>
                                                     <th>สถานะเอกสาร</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             </tbody>
                                         </table>
+                                        <form name="frm_link_cr" id="frm_link_cr">
+                                            <input type="hidden" name="action" value="link_cr">
+                                            <input type="hidden" name="csrf_securecode"
+                                                value="<?php echo $csrf_securecode ?>">
+                                            <input type="hidden" name="csrf_token"
+                                                value="<?php echo md5($csrf_token) ?>">
+                                            <input type="hidden" name="cus_app_nbr" value="">
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -230,9 +239,14 @@ $headtitle =" - รายงานสรุปรายการแต่งต�
 <script src="<?php echo BASE_DIR;?>/theme/app-assets/js/core/app-menu.js"></script>
 <script src="<?php echo BASE_DIR;?>/theme/app-assets/js/core/app.js"></script>
 <script src="<?php echo BASE_DIR;?>/theme/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
-<script src="<?php echo BASE_DIR;?>/theme/app-assets/js/scripts/tables/datatables/datatable-basic.js"></script>
+<!-- <script src="<?php echo BASE_DIR;?>/theme/app-assets/js/scripts/tables/datatables/datatable-basic.js"></script> -->
 <script src="<?php echo BASE_DIR;?>/theme/app-assets/vendors/js/extensions/sweetalert.min.js"></script>
 <script src="<?php echo BASE_DIR;?>/theme/app-assets/vendors/js/extensions/sweetalert2.all.min.js"></script>
+
+<script src="<?php echo BASE_DIR;?>/theme/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
+<script src="<?php echo BASE_DIR;?>/theme/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
+<script src="<?php echo BASE_DIR;?>/theme/app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js"></script>
+
 <script src="<?php echo BASE_DIR;?>/_libs/js/bootstrap3-typeahead.min.js"></script>
 <script src="<?php echo BASE_DIR;?>/theme/app-assets/js/core/main.js"></script> <!-- to-Top -->
 <script type="text/javascript" language="javascript" class="init">
@@ -300,10 +314,6 @@ $(document).on("click", "#but_search", function() {
                     dom: 'Bfrtip',
                     buttons: [
                         'excel',
-                        /* {
-                        	extend: 'colvis',
-                        	collectionLayout: 'fixed four-column'
-                        } */
                     ],
                     "aaData": res.data,
                     "cache": false,
@@ -347,38 +357,63 @@ $(document).on("click", "#but_search", function() {
                         {
                             "data": "cr_sta_name"
                         },
+
+                        {
+                            "targets": [12],
+                            "render": function(data, type, row, meta) {
+                                var btnAction_Edit = "";
+                                var btnActionALL = "";
+                                <?php if($can_edit_cr) { ?>
+                                        if(row.cus_cond_cust=="c1" || row.cus_cond_cust=="c2"){
+                                            var btnAction_Edit =
+                                                '<a title="แก้ไขข้อมูลลูกค้า" id="btnEdit" data-directions="EDIT_CR" data-cus_app_nbr=" ' +
+                                                row.cus_app_nbr + '" data-cus_id="' + row.cus_id +
+                                                '"  href="javascript:void(0)"><i class="fa fa-pencil-square-o"></i></a>  ';
+            
+                                        }    
+                                        else
+                                        {
+                                            var btnAction_Edit =
+                                                '<a title="แก้ไขข้อมูลลูกค้า" id="btnEdit" data-directions="EDIT_CR_CH" data-cus_app_nbr=" ' +
+                                                row.cus_app_nbr + '" data-cus_id="' + row.cus_id +
+                                                '"  href="javascript:void(0)"><i class="fa fa-pencil-square-o"></i></a>  ';
+                                        }    
+                                <? } ?>    
+                                <?php if(!$can_edit_cr) { ?>
+                                    var btnAction_Edit =
+                                                '<a title="แก้ไขข้อมูลลูกค้า"  data-cus_app_nbr=" ' +
+                                                row.cus_app_nbr + '" data-cus_id="' + row.cus_id +
+                                                '"  href="javascript:void(0)"><i class="fa fa-lock" style="color:Crimson"></i></a>  ';
+                                <? } ?>  
+
+                                btnActionALL = btnAction_Edit ; 
+
+                                return btnActionALL;
+                            }
+                        },
+
                     ],
                     "columnDefs": [{
                             "className": "text-center",
-                            "targets": [0, 1, 2, 3, 6, 7, 8, 9, 10, 11]
+                            "targets": [0, 1, 2, 3, 6, 7, 8, 9, 10, 11, 12]
                         },
-                       /*  {
-                            "className": "text-right",
-                            "targets": [6]
-                        },  */
-                       /*  {
-                            "width": 5,
-                            "targets": 0
-                        }, */
-                       /*  {
-                            "width": 5,
-                            "targets": 1
-                        }, */
-                      /*   {
-                            "width": 10,
-                            "targets": 2
-                        }, */
 
                     ],
+                    fixedColumns: {
+                        leftColumns: 2
+                    },  
+                  
                     "searching": false,
                     "ordering": false,
                     "stateSave": true,
+                    "scrollY": "50vh",
+					"scrollX": true,
                     "pageLength": 10,
                     "pagingType": "simple_numbers",
                 });
                 $("#table-data").fadeIn();
             }
-        },
+        }, 
         complete: function() {
             $(".loading").fadeOut();
         },
@@ -388,6 +423,50 @@ $(document).on("click", "#but_search", function() {
         }
     });
 });
+
+$(document).on('click', '#btnView,#btnEdit,#btnTime', function(e) {
+    var cus_app_nbr = $(this).data('cus_app_nbr');
+    var cus_id = $(this).data('cus_id');
+    var directions = $(this).data('directions');
+
+    document.frm_link_cr.cus_app_nbr.value = cus_app_nbr;
+    document.frm_link_cr.cus_id = cus_id;
+
+    $.ajax({
+        type: 'POST',
+        url: '../serverside/n_newcust_post.php',
+        data: $('#frm_link_cr').serialize(),
+        timeout: 3000,
+        error: function(xhr, error) {
+            showmsg('[' + xhr + '] ' + error);
+        },
+        success: function(result) {
+            //console.log(result);
+            //alert(result);
+            var json = $.parseJSON(result);
+            if (json.r == '0') {
+                Swal.fire({
+                    title: "Error!",
+                    html: json.e,
+                    type: "error",
+                    confirmButtonClass: "btn btn-danger",
+                    buttonsStyling: false
+                });
+            } else {
+                if (directions == "EDIT_CR") {
+                    var Linkdirections = '../crcust/upd_cr_newcusmnt.php?q=' + json.nb;
+                } else if (directions == "EDIT_CR_CH") {
+                    var Linkdirections = '../crcust/upd_cr_chgcusmnt.php?q=' + json.nb;      
+                } 
+                $(location).attr('href', Linkdirections)
+            }
+        },
+        complete: function() {
+            $("#requestOverlay").remove();
+        }
+    });
+});
+
 
 $('#cus_name').typeahead({
 

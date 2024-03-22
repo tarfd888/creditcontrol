@@ -75,7 +75,7 @@
                                 <!--<li class="breadcrumb-item"><a href="#">DataTables</a>
 									</li>-->
                                 <li class="breadcrumb-item active">
-                                    <font color="40ADF4">รายละเอียดข้อมูลลูกค้า</font>
+                                    <font color="40ADF4">List รายการขออนุมัติแต่งตั้งลูกค้าใหม่/สาขาใหม่/เปลี่ยนแปลง</font>
                                 </li>
                             </ol>
                         </div>
@@ -111,7 +111,7 @@
                                                 style="width:100%;">
                                                 <!--dt-responsive nowrap-->
                                                 <thead class="text-center" style="background-color:#f1f1f1;">
-                                                    <tr class="bg-info text-white font-weight-bold">
+                                                    <tr class="text-center" style="background-color:#DDF2FD;">
                                                         <th>No.</th>
                                                         <th>เลขที่เอกสาร</th>
                                                         <th>วันที่</th>
@@ -123,7 +123,7 @@
                                                         <th></th>
                                                     </tr>
                                                 </thead>
-                                                <tbody class="table-light">
+                                                <tbody>
                                                 </tbody>
                                             </table>
                                             <form name="frm_del_newcust" id="frm_del_newcust">
@@ -212,7 +212,7 @@
 
             "createdRow": function( row, data, dataIndex ) {
                 if ( data['cus_new_info'] == "เปลี่ยนแปลงที่อยู่จดทะเบียน" ) {        
-                    $(row).addClass('text-black bg-info bg-lighten-5');	  	 
+                    $(row).addClass('text-black bg-success bg-lighten-5');	  	 
                 }
                 if ( data['cus_new_info'] == "เปลี่ยนแปลงชื่อและที่อยู่" ) {        
                     $(row).addClass('text-black bg-danger bg-lighten-5');	  	 
@@ -356,7 +356,7 @@
                                 }
                             }
                             // สินเชื่อแก้ไขข้อมูลพิจารณา
-                            if(row.cus_step_code.substring(0, 1) =="2" || row.cus_step_code.substring(0, 1) =="5" || row.cus_step_code.substring(0, 1) =="6") { 	
+                            if(row.cus_step_code.substring(0, 1) =="2" || row.cus_step_code.substring(0, 1) =="4" || row.cus_step_code.substring(0, 1) =="5" || row.cus_step_code.substring(0, 1) =="6") { 	
                             //if(row.cus_step_code =="20" ||  row.cus_step_code =="840") { 	
                                 if(row.cus_cond_cust=="c1" || row.cus_cond_cust=="c2"){
                                     var btnAction_Edit =
@@ -624,8 +624,8 @@
     $(document).on('click', '#btnDelcr', function(e) {
         var cus_app_nbr = $(this).data('cus_app_nbr');
         Swal.fire({
-            title: "ยืนยันการลบข้อมูล ?",
-            html: "คุณต้องการลบ " + <? echo cus_app_nbr; ?> + " ของแผนกสินเชื่อ ใช่หรือไหม่ !!! ",
+            title: "ยืนยันการยกเลิกข้อมูล ?",
+            html: "คุณต้องการยกเลิก " + <? echo cus_app_nbr; ?> + " ของแผนกสินเชื่อ ใช่หรือไหม่ !!! ",
             type : "warning",
             showCancelButton: true,
             confirmButtonText: "Yes, delete it!",
@@ -665,7 +665,7 @@
                                 clearloadresult();
                                 Swal.fire({
                                     type: "success",
-                                    title: "ลบข้อมูลเรียบร้อบแล้ว",
+                                    title: "ยกเลิกข้อมูลเรียบร้อบแล้ว",
                                     showConfirmButton: false,
                                     timer: 1500,
                                     confirmButtonClass: "btn btn-primary",

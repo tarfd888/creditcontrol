@@ -309,6 +309,8 @@ $(document).on("click", "#but_search", function() {
                     "searching": false,
                     "ordering": false,
                     "stateSave": true,
+                    "scrollY": "50vh",
+					"scrollX": true,
                     "pageLength": 10,
                     "pagingType": "simple_numbers",
                 });

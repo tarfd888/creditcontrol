@@ -63,9 +63,9 @@
 					<div class="row breadcrumbs-top d-inline-block">
 						<div class="breadcrumb-wrapper col-12">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="<?php echo BASE_DIR;?>/crctrlbof/crctrlall.php">Home</a>
-								</li>
-								<li class="breadcrumb-item active"><font color="40ADF4">List Document</font></li>
+								<!-- <li class="breadcrumb-item"><a href="<?php echo BASE_DIR;?>/crctrlbof/crctrlall.php">Home</a>
+								</li> -->
+								<li class="breadcrumb-item active"><font color="40ADF4">List รายการขออนุมัติวงเงินสินเชื่อ</font></li>
 							</ol>
 						</div>
 					</div>
@@ -98,7 +98,7 @@
 											<table id="custsp_list" class="table table-sm table-hover table-bordered compact nowrap " style="width:100%;">
 												<!--dt-responsive nowrap-->
 												<thead class="text-center" style="background-color:#f1f1f1;">
-													<tr class="bg-info text-white font-weight-bold">
+													<tr class="text-center" style="background-color:#DDF2FD;">
 														<th>No.</th>
 														<th>เอกสารเลขที่</th>
 														<th>วันที่</th>
@@ -112,7 +112,7 @@
 												<tbody>
 												</tbody>
 												<tfoot>
-												<tr class="bg-info text-white font-weight-bold">
+													<tr class="text-center" style="background-color:#DDF2FD;">
 														<th>No.</th>
 														<th>เอกสารเลขที่</th>
 														<th>วันที่</th>
@@ -179,7 +179,7 @@
 												style="width:100%;">
 												<!--dt-responsive nowrap-->
 												<thead class="text-center" style="background-color:#f1f1f1;">
-													<tr class="bg-info text-white font-weight-bold">
+													<tr class="text-center" style="background-color:#DDF2FD;">
 														<th>No.</th>
 														<th>เลขที่เอกสาร</th>
 														<th>วันที่</th>
@@ -191,7 +191,7 @@
 														<th></th>
 													</tr>
 												</thead>
-												<tbody class="table-light">
+												<tbody>
 												</tbody>
 											</table>
 											<form name="frm_del_newcust" id="frm_del_newcust">
@@ -402,7 +402,7 @@
 				],
 				"createdRow": function( row, data, dataIndex ) {
 						if ( data['crstm_cus_active'] == "0" ) {        
-							$(row).addClass('text-black bg-info bg-lighten-5');	  	 
+							$(row).addClass('text-black bg-success bg-lighten-5');	  	 
 						}
 					},
 					
@@ -505,7 +505,7 @@
 			
 			"createdRow": function( row, data, dataIndex ) {
                 if ( data['cus_new_info'] == "เปลี่ยนแปลงที่อยู่จดทะเบียน" ) {        
-                    $(row).addClass('text-black bg-info bg-lighten-5');	  	 
+                    $(row).addClass('text-black bg-success bg-lighten-5');	  	 
                 }
                 if ( data['cus_new_info'] == "เปลี่ยนแปลงชื่อและที่อยู่" ) {        
                     $(row).addClass('text-black bg-danger bg-lighten-5');	  	 
@@ -649,7 +649,7 @@
                                 }
                             }
                             // สินเชื่อแก้ไขข้อมูลพิจารณา
-                            if(row.cus_step_code.substring(0, 1) =="2" || row.cus_step_code.substring(0, 1) =="3" || row.cus_step_code.substring(0, 1) =="5" || row.cus_step_code.substring(0, 1) =="6") { 	
+							if(row.cus_step_code.substring(0, 1) =="2" || row.cus_step_code.substring(0, 1) =="3" || row.cus_step_code.substring(0, 1) =="4" || row.cus_step_code.substring(0, 1) =="5" || row.cus_step_code.substring(0, 1) =="6") { 	
                             //if(row.cus_step_code =="20" ||  row.cus_step_code =="840") { 	
                                 if(row.cus_cond_cust=="c1" || row.cus_cond_cust=="c2"){
                                     var btnAction_Edit =

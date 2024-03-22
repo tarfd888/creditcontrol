@@ -109,6 +109,9 @@ switch($cus_cond_cust){
                         <div class="dropdown-menu arrow"><a class="dropdown-item blue" href="../newcust/upd_newcusmnt.php?q=<?php echo encrypt($cus_app_nbr, $key); ?>" target="_blank"><i class="fa fa-file-text-o mr-1"></i>ดูรายละเอียดเอกสาร</a>
                         <!-- <div class="dropdown-divider"></div><a class="dropdown-item blue" href="#div_frm_remind" data-toggle="modal"><i class="fa fa-undo mr-1"></i> Remind Email</a> -->
                         <div class="dropdown-divider"></div><a class="dropdown-item blue" href="../crcust/cr_form_newcus.php?crnumber=<?php echo encrypt($cus_app_nbr, $key);?>" target="_blank"><i class="ft-printer mr-1"></i>พิมพ์ใบขออนุมัติ<?php echo($cardtxt);?></a> 
+                        <?php if (!inlist("60",$cus_step_code)) {?>
+                            <div class="dropdown-divider"></div><a class="dropdown-item danger" href="#div_frm_reject" data-toggle="modal"><i class="fa fa-times-circle mr-1"></i>ยกเลิกเอกสาร<?php echo($cardtxt);?></a> 
+                        <?php } ?>    
                     </div>
                 </div>
             </div>

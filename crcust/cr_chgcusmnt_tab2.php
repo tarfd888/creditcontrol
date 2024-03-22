@@ -86,20 +86,21 @@
                     </div>
                 </div>
 
-                <!-- <div class="col-md-6 disshowremark" style="display:show"></div>
+                <div class="col-md-6 disshowremark" style="display:show"></div>
+               
                 <div class="col-md-3 skin skin-square">
                     <div class="form-group chk_btn_submit">
-                        <input type="radio" name="cr_status" id="cr_status1" value="A">
-                        <label for="cr_status">อนุมัติ</label>
+                        <input type="radio" name="cr_status" id="cr_status1_chg" value="A" <?php if($cr_status=="A"){ echo "checked"; }?>>
+                        <label for="cr_status1">เห็นควรอนุมัติ</label>
                     </div>
                     
                 </div>
                 <div class="col-md-3 skin skin-square">
                     <div class="form-group chk_btn_submit">
-                        <input type="radio" name="cr_status" id="cr_status2" value="R">
-                        <label for="cr_status">แก้ไข</label>
+                        <input type="radio" name="cr_status" id="cr_status2_chg" value="R" <?php if($cr_status=="R"){ echo "checked"; }?>>
+                        <label for="cr_status2">แก้ไข</label>
                     </div>
-                </div> -->
+                </div>
             <?php } ?>
 
             <?php if (inlist($user_role,'FinCR Mgr')) { ?>

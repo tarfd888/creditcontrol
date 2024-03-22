@@ -153,6 +153,12 @@
 			$errorflag = true;					
 			$errortxt .= "กรุณาระบุ - [ เอกสารประกอบที่ต้องมี ]";
 		}
+
+		if($cr_status == "") {
+			if ($errortxt!="") {$errortxt .= "<br>";}
+			$errorflag = true;					
+			$errortxt .= "กรุณาระบุ - [ เห็นควรอนุมัติ หรือ แก้ไข้ ]";
+		}
 	}
 	if (inlist("cr_edit",$action)) {	
 		if($cr_remark == "") {
@@ -470,6 +476,7 @@
 								$cr_due_date,
 								$cr_so_amt,
 								$cr_odue_amt,
+								$cr_status,
 								$cr_remark,
 								$cr_rem_guarantee,
 								$cr_rem_other,
@@ -486,6 +493,7 @@
 				"cr_due_date, ". 
 				"cr_so_amt, ". 
 				"cr_odue_amt, ". 
+				"cr_status, ".
 				"cr_remark, ". 
 				"cr_rem_guarantee, ".
 				"cr_rem_other, ". 
@@ -494,7 +502,7 @@
 				"cr_create_by, ".
 				"cr_whocanread, ".
 				"cr_create_date)" .		   
-				" VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";			
+				" VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";			
 				
 				$result_add = sqlsrv_query($conn,$sql_add,$params);
 				if ($result_add) {

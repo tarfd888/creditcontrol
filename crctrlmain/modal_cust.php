@@ -99,6 +99,10 @@
                             <div class="col-lg-4  pt-1 ">ชื่อจดทะเบียน :</div>
                             <div class="col-lg-8  pt-1 border-bottom"><? echo $cus_reg_nme; ?></div>
                         </div>
+                        <div class="row pr-1 pl-1 ">
+                            <div class="col-lg-4  pt-1 ">อีเมลแจ้งเตือน :</div>
+                            <div class="col-lg-8  pt-1 border-bottom"><? echo $remind_email; ?></div>
+                        </div>
                        
                     </div>
                 </div>

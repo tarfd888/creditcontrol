@@ -3,16 +3,57 @@
         <div class="row ml-1 mr-1 pb-2 mt-n2">
 			<div class="col-lg-12 col-md-12  pl-4 pr-4">
 				<div class="row">
+					<div class="col-md-3  pt-1 "><span style='color:DarkBlue'>ชื่อจดทะเบียน (ข้อมูลเดิม)</span></div>
+					<div class="col-md-9  pt-1 border-bottom"><?php echo $cus_old_name; ?></div>
+					<div class="col-md-3  pt-1 "><span style='color:DarkBlue'>ที่อยู่จดทะเบียน (Registered Address)</span></div>
+					<div class="col-md-9  pt-1 border-bottom"><?php echo $cus_old_addr; ?></div>
+					<div class="col-md-3  pt-1 "><span style='color:DarkBlue'>เลขประจำตัวผู้เสียภาษี (Tax ID No.)</span></div>
+					<div class="col-md-9  pt-1 border-bottom"><?php echo $cus_tax_id; ?></div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 pt-1 "><span style='color:DarkBlue'>จังหวัด (Province)</span></div>
+					<div class="col-md-4 pt-1 border-bottom"><?php echo $cus_city; ?></div>
+					<div class="col-md-2 pt-1 "><span style='color:DarkBlue'>ประเทศ (Country)</span></div>
+					<div class="col-md-3 pt-1 border-bottom"><?php echo $country_name; ?></div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 pt-1 "><span style='color:DarkBlue'>รหัสลูกค้า</span></div>
+					<div class="col-md-4 pt-1 border-bottom"><?php echo $cus_old_code; ?></div>
+					<div class="col-md-2 pt-1 "><span style='color:DarkBlue'>สาขาที่ (Branch No.)</span></div>
+					<div class="col-md-3 pt-1 border-bottom"><?php echo $cus_branch; ?></div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 pt-1 "><span style='color:DarkBlue'>Account Group</span></div>
+					<div class="col-md-4 pt-1 border-bottom"><?php echo $cus_acc_group; ?></div>
+				</div>
+			</div>
+		</div>
+    </div>
+
+    <div class="bs-callout-success callout-border-left callout-bordered callout-transparent p-1 mt-1">   
+        <div class="row ml-1 mr-1 pb-2 mt-n2">
+			<div class="col-lg-12 col-md-12  pl-4 pr-4">
+				<div class="row">
 					<div class="col-md-3 pt-1 ">เริ่มวันที่เริ่มใช้ :</div>
 					<div class="col-md-4 pt-1 border-bottom"><?php echo $cus_effective_date; ?></div>
 					<div class="col-md-2 pt-1 "><?php echo $newcus_txt; ?></div>
 					<div class="col-md-3 pt-1 border-bottom"><?php echo $cus_code.' '.$cus_reg_nme; ?></div>
 				</div>
 				<div class="row">
-					<div class="col-md-3  pt-1 "><?php echo $oldaddr_txt; ?></div>
-					<div class="col-md-9  pt-1 border-bottom"><?php echo $cus_old_addr; ?></div>
 					<div class="col-md-3  pt-1 "><?php echo $newaddr_txt; ?></div>
-					<div class="col-md-9  pt-1 border-bottom"><?php echo $cus_mas_addr; ?></div>
+					<div class="col-md-9  pt-1 border-bottom"><?php echo $cus_new_addr; ?></div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 pt-1 ">จังหวัด (Province)</div>
+					<div class="col-md-4 pt-1 border-bottom"><?php echo $cus_prov; ?></div>
+					<div class="col-md-2 pt-1 ">ประเทศ (Country)</div>
+					<div class="col-md-3 pt-1 border-bottom"><?php echo $newcus_country; ?></div>
+					<div class="col-md-3  pt-1 ">เลขประจำตัวผู้เสียภาษี (Tax ID No.)</div>
+					<div class="col-md-4  pt-1 border-bottom"><?php echo $cus_tax_id; ?></div>
+					<div class="col-md-2 pt-1 ">สาขาที่ (Branch No.)</div>
+					<div class="col-md-3 pt-1 border-bottom"><?php echo $newcus_branch; ?></div>
+				</div>
+				<div class="row">
 					<div class="col-md-3  pt-1 ">ความเห็นของผู้แทนขาย :</div>
 					<div class="col-md-9  pt-1 border-bottom"><?php echo $cusd_sale_reason; ?></div>
 				</div>

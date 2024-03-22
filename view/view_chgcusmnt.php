@@ -39,39 +39,21 @@ if($rowCounts > 0){
 		$cus_app_nbr = mssql_escape($row['cus_app_nbr']);
 		$cus_cond_cust = mssql_escape($row['cus_cond_cust']);
 		$cus_tg_cust = mssql_escape($row['cus_tg_cust']); // domestic , export
+		$cus_old_code = mssql_escape($row['cus_code']);
+        $cus_code = mssql_escape($row['cus_code']);
 
-		switch($cus_cond_cust){
-			case "c3" :
-				$readonlyC3 = "";
-				$readonlyC4 = "readonly";
-				$dis_apprv = "show";
-				$dis_info_addr = "none"; $dis_reg_addr = "none";
-				break;
-			case "c4" :
-				$readonlyC4 = "";
-				$readonlyC3 = "readonly";
-				$dis_apprv = "none";
-				break;	
-			case "c5" :
-				$readonlyC5 = "";
-				$dis_apprv = "none";
-				break;		
-		}   
-		
+        $cus_reg_nme = mssql_escape($row['cus_reg_nme']);
 		$cus_type_code = mssql_escape($row['cus_cust_type']);
-		$cus_code = mssql_escape($row['cus_code']);
-		$cus_reg_nme = mssql_escape($row['cus_reg_nme']);
 		$cus_reg_addr = mssql_escape($row['cus_reg_addr']);
 		$cus_district = mssql_escape($row['cus_district']);
 		$cus_amphur = mssql_escape($row['cus_amphur']);
 		$cus_prov = mssql_escape($row['cus_prov']);
 		$cus_zip = mssql_escape($row['cus_zip']);
-		$cus_country = mssql_escape($row['cus_country']);
+		$newcus_country = mssql_escape($row['cus_country']);
 		$cus_tax_id = mssql_escape($row['cus_tax_id']);
-		$cus_branch = mssql_escape($row['cus_branch']);
+		$newcus_branch = mssql_escape($row['cus_branch']);
 
-		$cus_mas_addr = $cus_reg_addr." ".$cus_district." ".$cus_amphur." ".$cus_prov." ".$cus_zip." ".$cus_country." ".$cus_tax_id." ".$cus_branch;
-		$cus_old_addr = findsqlval("cus_mstr","cus_street+' '+cus_street2+' '+cus_street3+' '+cus_street4+' '+cus_street5+' '+cus_district+' '+cus_city+' '+cus_zipcode","cus_nbr",$cus_code,$conn);
+		//$cus_old_addr = findsqlval("cus_mstr","cus_street+' '+cus_street2+' '+cus_street3+' '+cus_street4+' '+cus_street5+' '+cus_district+' '+cus_city+' '+cus_zipcode","cus_nbr",$cus_code,$conn);
 
         $cus_type_bus = mssql_escape($row['cus_type_bus']);
 		$cus_tel = mssql_escape($row['cus_tel']);
@@ -88,7 +70,53 @@ if($rowCounts > 0){
         if($cus_type_code =="9") { $newbranch_input = "show"; } 
         if($cus_cond_term =="2") { $cus_cond_term_txt = "show"; } 
 
-		$cust_code = findsqlval("cus_mstr","cus_nbr + ' ' + cus_name1","cus_nbr",$cust_code,$conn);
+        switch($cus_cond_cust){
+			case "c3" :
+                $cardtxt = "เปลี่ยนแปลงชื่อ";
+                $newcus_txt = "<span style='color:DarkOrange'>ชื่อจดทะเบียน (ใหม่) :</span>";
+                $newaddr_txt = "ที่อยู่จดทะเบียน :";
+                $book_case = 2;
+				$readonlyC3 = "";
+				$readonlyC4 = "readonly";
+				$dis_apprv = "show";
+				$dis_info_addr = "none"; $dis_reg_addr = "none";
+                $cus_new_addr = $cus_reg_addr." ".$cus_district." ".$cus_amphur." ".$cus_prov." ".$cus_zip." ".$cus_country." ".$cus_tax_id." ".$cus_branch;
+                $cus_new_addr = "<span style='color:DarkOrange'>$cus_new_addr</span>";
+
+                $cus_code = "<span style='color:DarkOrange'>$cus_code</span>";
+                $cus_reg_nme = "<span style='color:DarkOrange'>$cus_reg_nme</span>";
+				break;
+			case "c4" :
+                $cardtxt = "เปลี่ยนแปลงที่อยู่จดทะเบียน";
+                $newcus_txt = "ชื่อจดทะเบียน :";
+                $newaddr_txt = "<span style='color:DarkOrange'>ที่อยู่จดทะเบียน (ใหม่) :</span>";
+                $oldaddr_txt = "<span style='color:DarkBlue'>ที่อยู่จดทะเบียน (เก่า) :</span>";
+                $book_case = 2;
+				$readonlyC4 = "";
+				$readonlyC3 = "readonly";
+				$dis_apprv = "none";
+                $cus_new_addr = $cus_reg_addr." ".$cus_district." ".$cus_amphur." ".$cus_prov." ".$cus_zip." ".$cus_country." ".$cus_tax_id." ".$cus_branch;
+                $cus_new_addr = "<span style='color:DarkOrange'>$cus_new_addr</span>";
+
+				break;	
+			case "c5" :
+                $cardtxt = "เปลี่ยนแปลงชื่อและที่อยู่";
+                $newcus_txt = "<span style='color:DarkOrange'>ชื่อจดทะเบียน (ใหม่) :</span>";
+                $newaddr_txt = "<span style='color:DarkOrange'>ที่อยู่จดทะเบียน (ใหม่) :</span>";
+                $oldaddr_txt = "<span style='color:DarkBlue'>ที่อยู่จดทะเบียน (เก่า) :</span>";
+                $book_case = 2;
+				$readonlyC5 = "";
+				$dis_apprv = "none";
+                $cus_new_addr = $cus_reg_addr." ".$cus_district." ".$cus_amphur." ".$cus_prov." ".$cus_zip." ".$cus_country." ".$cus_tax_id." ".$cus_branch;
+                $cus_new_addr = "<span style='color:DarkOrange'>$cus_new_addr</span>";
+
+                $cus_code = "<span style='color:DarkOrange'>$cus_code</span>";
+                $cus_reg_nme = "<span style='color:DarkOrange'>$cus_reg_nme</span>";
+
+				break;		
+		}   
+
+		//$cust_code = findsqlval("cus_mstr","cus_nbr + ' ' + cus_name1","cus_nbr",$cust_code,$conn);
 
 	}
 }	
@@ -186,34 +214,6 @@ $sql = "select * FROM apprv_person Where apprv_cus_nbr = ?  order by apprv_id as
 	
 $rem_revise = findsqlval("cr_app_mstr","cr_rem_revise","cr_app_nbr",$cus_app_nbr,$conn);
 
-switch($cus_cond_cust){
-    case "c3" :
-		$cardtxt = "เปลี่ยนแปลงชื่อ";
-        $newcus_txt = "<span style='color:DarkOrange'>ชื่อจดทะเบียน (ใหม่) :</span>";
-        $newaddr_txt = "ที่อยู่จดทะเบียน :";
-        $book_case = 2;
-        break;
-      case "c4" :
-        $cardtxt = "เปลี่ยนแปลงที่อยู่จดทะเบียน";
-        $newcus_txt = "ชื่อจดทะเบียน :";
-        $newaddr_txt = "<span style='color:DarkOrange'>ที่อยู่จดทะเบียน (ใหม่) :</span>";
-        $oldaddr_txt = "<span style='color:DarkBlue'>ที่อยู่จดทะเบียน (เก่า) :</span>";
-        $book_case = 2;
-        break;  
-	  case "c5" :
-		$cardtxt = "เปลี่ยนแปลงชื่อและที่อยู่";
-        $newcus_txt = "<span style='color:DarkOrange'>ชื่อจดทะเบียน (ใหม่) :</span>";
-        $newaddr_txt = "<span style='color:DarkOrange'>ที่อยู่จดทะเบียน (ใหม่) :</span>";
-        $oldaddr_txt = "<span style='color:DarkBlue'>ที่อยู่จดทะเบียน (เก่า) :</span>";
-        $book_case = 2;
-		break;  	
-      default :
-        $cardtxt = "ยกเลิกลูกค้า";
-        $newcus_txt = "ชื่อจดทะเบียน :";
-        $newaddr_txt = "ที่อยู่จดทะเบียน :";
-        break;  
-}
-
 switch($cus_type_code){
     case "4" :   //ราชการ/รัฐวิสาหกิจ
       $cusd_op_app = "ผส.";
@@ -263,7 +263,33 @@ if($rowCounts > 0){
         }
 	}
 }	
-	
+
+$params = array($cus_old_code);
+$query_det = "SELECT * FROM cus_mstr WHERE cus_nbr = ?";
+$result = sqlsrv_query($conn, $query_det, $params, array("Scrollable" => 'keyset' ));
+$rowCounts = sqlsrv_num_rows($result);
+if($rowCounts > 0){
+	while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
+	{
+
+        $cus_old_name = mssql_escape($row['cus_name1']);
+        $cus_street = mssql_escape($row['cus_street']);
+        $cus_street2 = mssql_escape($row['cus_street2']);
+        $cus_street3 = mssql_escape($row['cus_street3']);
+        $cus_street4 = mssql_escape($row['cus_street4']);
+        $cus_street5 = mssql_escape($row['cus_street5']);
+        $cus_district = mssql_escape($row['cus_district']);
+        $cus_city = mssql_escape($row['cus_city']);
+        $cus_country = mssql_escape($row['cus_country']);
+        $cus_tax_id = mssql_escape($row['cus_tax_nbr3']);
+        $cus_branch = mssql_escape($row['cus_tax_nbr4']);
+        $cus_zip = mssql_escape($row['cus_zipcode']);
+        $cus_acc_group = mssql_escape($row['cus_acc_group']);
+        $country_name = findsqlval("country_mstr","country_desc","country_code",$cus_country,$conn);
+        $cus_old_addr = $cus_street." ".$cus_street2." ".$cus_street3." ".$cus_street4." ".$cus_street5." ".$cus_district." ".$cus_city." ".$cus_zip;
+
+    }
+}    
 ?>
 <?php include("../newcust/header.php"); ?>
 
@@ -322,6 +348,7 @@ if($rowCounts > 0){
                             value="<?php echo encrypt($cus_app_nbr, $key)?>">
                         <input type="hidden" name="rem_revise" id="rem_revise" value="<?php echo $rem_revise ?>">
                         <input type="hidden" name="book_case" id="book_case" value="<?php echo $book_case ?>">	
+                        <input type="hidden" name="search_app_nbr" id="search_app_nbr" value="<?php echo $cus_app_nbr ?>">
 
                         <ul class="nav nav-tabs nav-linetriangle nav-justified">
                             <?php if ($current_tab == "10") { ?>

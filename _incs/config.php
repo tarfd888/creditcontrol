@@ -23,6 +23,11 @@ $http_host = "http://".$_SERVER['HTTP_HOST']."/"; //For Test
 $app_url = $http_host."$app_folder";
 define("BASE_DIR",$app_url);
 
+// root saim ware
+$app_ware_url = $http_host."crctrl_ware";
+define("BASE_WARE_DIR",$app_ware_url);
+
+
 //$web_version = "Version : 2.1 (30/09/2022)";
 $web_version = "Version : 2.2 (16/11/2023)";
 
@@ -54,8 +59,8 @@ $decdbserv=rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($dbkey), base64_decode(
 
 ////$dbserver = $decdbserv;
 $dbserver = "L0650NANTAWAS01\SQLEXPRESS";                 //10.28.101.94\SQLEXPRESS //L0650NANTAWAS01\SQLEXPRESS
-//$dbname = "crctrldb_new";
-$dbname = "crctrldb_uat";   // crctrldb_uat_fin  crctrldb_new
+$dbname = "crctrldb_uat";
+//$dbname = "crctrldb_uat";   // crctrldb_uat_fin  crctrldb_new
 $dbuser = "sa";
 $dbpwd = "Ta182924";     //"root"
 

@@ -323,20 +323,17 @@ $params = array();
 					dataType: 'json',
 					data: {param0: JSON.stringify(input0)},
 					beforeSend: function () {
-						$('body').append('<div id="requestOverlay" class="request-overlay"></div>'); /*Create overlay on demand*/
-						$("#requestOverlay").show();/*Show overlay*/
+						// $('body').append('<div id="requestOverlay" class="request-overlay"></div>'); /*Create overlay on demand*/
+						// $("#requestOverlay").show();/*Show overlay*/
+						$("#table-data").dataTable().fnDestroy();
 					},
 					success: function (res) {
 						if (res.success) {
-							$("#table-data").dataTable().fnDestroy();
+							//$("#table-data").dataTable().fnDestroy();
 							$("#table-data").dataTable({
 								dom: 'Bfrtip',
 								buttons: [
 								'excel',
-									/* {
-										extend: 'colvis',
-										collectionLayout: 'fixed four-column'
-									} */
 								],
 								"aaData" : res.data,
 								"cache": false,
@@ -364,50 +361,19 @@ $params = array();
 								{"width": 10, "targets": 0},
 								{"width": 10, "targets": 1},
 								{"width": 10, "targets": 2},
-								
-								/* { 
-									"targets": [7],
-									"render": function(data, type, row, meta) {
-										return row.crstm_amt_new;
-									}
-								},
-								{ 
-									"targets": [8],
-									"render": function(data, type, row, meta) {
-										return row.crstm_cc_date_beg;
-									}
-								},
-								{ 
-									"targets": [9],
-									"render": function(data, type, row, meta) {
-										return row.crstm_cc_date_end;
-									}
-								},
-								{ 
-									"targets": [10],
-									"render": function(data, type, row, meta) {
-										return row.crstm_approve;
-									}
-								},
-								{ 
-									"targets": [11],
-									"render": function(data, type, row, meta) {
-										return row.crstm_step_name;
-									}
-								}, */
-								
 								],
-								"searching": false,
+								
+								fixedColumns: {
+									leftColumns: 2
+								},     
+								
 								"ordering": false,
-								"stateSave" : true,
 								"pageLength": 10,
-								"pagingType": "simple_numbers",						
+								"scrollY": "50vh",
+								"scrollX": true,
+								"processing": true,
 							});
-							$("#table-data").fadeIn();
-							
-							// var export_pg = "<a class='label label-success <?php echo $user_fb;?>' href='javascript:void(0)'>"+
-							// " <i class='fa fa-download text-white'></i> Export to excel</a>";
-							// $("#btn-export-to-excel").html(export_pg);
+							//$("#table-data").fadeIn();
 						}
 					},
 					complete: function () {

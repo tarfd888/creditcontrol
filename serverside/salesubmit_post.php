@@ -40,7 +40,7 @@ $cus_app_nbr  = mssql_escape(decrypt($_POST['cus_app_nbr'], $key));
 				$can_sendmail=false;
 				$r="0";
 				$nb="";
-				$errortxt .= "<span style='color:red'>** พบปัญหาการส่ง Email ดังนั้นระบบจึงไม่สามารถส่ง Email แจ้งผู้ที่เกี่ยวข้องได้!!**</span><br>";
+				$errortxt .= "<span style='color:red'>** พบปัญหาการส่ง Email ดังนั้นระบบจึงไม่สามารถส่ง Email แจ้งผู้ที่เกี่ยวข้องได้!!**</span><br><br>";
 			}
 
 			$params = array($cus_app_nbr);
@@ -276,7 +276,7 @@ $cus_app_nbr  = mssql_escape(decrypt($_POST['cus_app_nbr'], $key));
 												if (!$sendstatus) {
 													$r="0";
 													$nb="";
-													$errortxt .= "ไม่สามารถส่ง Email แจ้งผู้อนุมัติได้ค่ะ<br>";
+													$errortxt .= "ไม่สามารถส่ง Email แจ้งผู้อนุมัติได้ค่ะ <br>";
 												}
 												else 
 												{
@@ -286,10 +286,10 @@ $cus_app_nbr  = mssql_escape(decrypt($_POST['cus_app_nbr'], $key));
 													" WHERE cus_app_nbr = ?";						
 													$result_updatestep = sqlsrv_query($conn,$sql_updatestep, $params); 
 												}
-											} else {$errortxt .= "ไม่สามารถส่ง Email แจ้งผู้อนุมัติได้ค่ะ<br>";}
+											} else {$errortxt .= "ไม่สามารถส่ง Email ไม่มีรายชื่อผู้อนุมัติ<br>";}
 										}
 										else {
-											{$errortxt .= "ไม่สามารถส่ง Email แจ้งผู้อนุมัติได้ค่ะ<br>";}
+											{$errortxt .= "ไม่สามารถส่ง Email ได้ !!!<br> ";}
 										}
 									}
 								}						
@@ -298,31 +298,34 @@ $cus_app_nbr  = mssql_escape(decrypt($_POST['cus_app_nbr'], $key));
 						else
 						{
 							$r="0";
-							$errortxt="ไม่สามารถส่ง Email แจ้งผู้อนุมัติได้ค่ะ";
+							$errortxt="ไม่สามารถส่ง Email แจ้งผู้อนุมัติได้ค่ะ ";
 							$nb="";	
 						}
 					} 
 
-					if($user_email != ""){
-						$mail_from = $mail_from_text;
-						$mail_from_email = $mail_credit_email;
-						$mail_to = $user_email;
-						$mail_subject = "[$cardtxt] - เลขที่ $cus_app_nbr : $cus_reg_nme  ได้ส่งไปให้ผู้พิจารณาแล้วค่ะ ";
-						$mail_message = "<font style='font-family:Cordia New;font-size:18px'>เรียน คุณ$auc_user_name <br><br>
-						ใบขอ$cardtxt เลขที่ $cus_app_nbr $cus_reg_nme ได้ส่งไปให้ผู้พิจารณาแล้วค่ะ <br><br>
-						$doc_url <br><br>
-						
-						ขอบคุณค่ะ<br></font>";
-						$mail_message .= $mail_no_reply;
-						if($mail_to!="") {
-							$sendstatus = mail_normal($mail_from,$mail_from_email,$mail_to,$mail_subject,$mail_message);
-							if (!$sendstatus) {
-								$errortxt .= "ไม่สามารถส่ง Email ได้<br>";
-								$r="0";
-								$nb="";
-							}
-						} else {$errortxt .= "ไม่สามารถส่ง Email ได้<br>";}
-					}	
+					if ($can_sendmail) { // ns13032024 
+
+						if($user_email != ""){
+							$mail_from = $mail_from_text;
+							$mail_from_email = $mail_credit_email;
+							$mail_to = $user_email;
+							$mail_subject = "[$cardtxt] - เลขที่ $cus_app_nbr : $cus_reg_nme  ได้ส่งไปให้ผู้พิจารณาแล้วค่ะ ";
+							$mail_message = "<font style='font-family:Cordia New;font-size:18px'>เรียน คุณ$auc_user_name <br><br>
+							ใบขอ$cardtxt เลขที่ $cus_app_nbr $cus_reg_nme ได้ส่งไปให้ผู้พิจารณาแล้วค่ะ <br><br>
+							$doc_url <br><br>
+							
+							ขอบคุณค่ะ<br></font>";
+							$mail_message .= $mail_no_reply;
+							if($mail_to!="") {
+								$sendstatus = mail_normal($mail_from,$mail_from_email,$mail_to,$mail_subject,$mail_message);
+								if (!$sendstatus) {
+									$errortxt .= "ไม่สามารถส่ง Email ได้<br> 4";
+									$r="0";
+									$nb="";
+								}
+							} else {$errortxt .= "ไม่สามารถส่ง Email ได้<br> 5";}
+						}	
+					}
 					//echo '{"r":"'.$r.'","e":"'.$errortxt.'","nb":"'.$nb.'","pg":"'.$pg.'"}';
 				}
 
